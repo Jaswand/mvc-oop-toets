@@ -15,7 +15,7 @@ class RichestPeopleModel extends Controller
 
     public function index($land = 'Nederland', $age = 21)
     {
-        $records = $this->countryModel->getRichestPeople();
+        $records = $this->RichestPeople->getRichestPeople();
 
         $rows = '';
 
