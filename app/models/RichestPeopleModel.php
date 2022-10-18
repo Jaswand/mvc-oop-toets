@@ -3,7 +3,7 @@
  * Dit is de model van de controller
  */
 
-class Country
+class RichestPeopleModel
 {
     //properties
     private $db;
