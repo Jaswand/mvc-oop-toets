@@ -1,21 +1,21 @@
 <?php
 
-class Countries extends Controller
+class RichestPeopleModel extends Controller
 {
     //properties
-    private $countryModel;
+    private $RichestPeople;
 
     // Dit is de contructor van de controller
     public function __construct()
     {
         // Dit is de model van de controller
-        $this->countryModel = $this->model('Country');
+        $this->RichestPeople = $this->model('RichestPeople');
     }
 
 
     public function index($land = 'Nederland', $age = 21)
     {
-        $records = $this->countryModel->getCountries();
+        $records = $this->countryModel->getRichestPeople();
 
         $rows = '';
 
@@ -23,12 +23,11 @@ class Countries extends Controller
         {
             $rows .= "<tr>
                         <td>$items->id</td>
-                        <td>$items->Name</td>
-                        <td>$items->CapitalCity</td>
-                        <td>$items->Continent</td>
-                        <td>$items->Population</td>
-                        <td><a href='" . URLROOT . "/countries/update/$items->id'>Update</a></td>
-                        <td><a href='" . URLROOT . "/countries/delete/$items->id'>Delete</a></td>
+                        <td>$items->Naam</td>
+                        <td>$items->Vermogen</td>
+                        <td>$items->Leeftijd</td>
+                        <td>$items->Bedrijf</td>
+                        <td><a href='" . URLROOT . "/RichestPeople/delete/$items->id'>Delete</a></td>
                        </tr>"; 
         }
         
@@ -38,7 +37,7 @@ class Countries extends Controller
             'rows' => $rows
         ];
 
-        $this->view('countries/index', $data);
+        $this->view('RichestPeople/index', $data);
 
     }
 
@@ -48,14 +47,14 @@ class Countries extends Controller
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $this->countryModel->updateCountry($_POST);
-        header("Location: " . URLROOT . "/countries/index");
+        header("Location: " . URLROOT . "/RichestPeopleModel/index");
         } else {
             $row = $this->countryModel->getSingleCountry($id);
             $data = [
                 'title' => '<h1>Update land</h1>',	
                 'row' => $row
             ];
-            $this->view("countries/update", $data);
+            $this->view("RichestPeopleModel/update", $data);
         }
         
     }
@@ -64,10 +63,10 @@ class Countries extends Controller
         //echo $id;exit();
         $this->countryModel->deleteCountry($id);
         $data =[
-            'deleteStatus' => "Het record met id  = $id is verwijdert"
+            'deleteStatus' => "Record is met succesvol verwijderd"
 
         ];
-        $this->view("countries/delete", $data); 
+        $this->view("RichestPeopleModel/delete", $data); 
         header("Refresh:2; url=" . URLROOT . "/countries/index");
         } 
 
@@ -77,7 +76,7 @@ class Countries extends Controller
            try {
              $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
              $this->countryModel->createCountry($_POST);
-             header("Location: " . URLROOT . "/countries/index");
+             header("Location: " . URLROOT . "/RichestPeopleModel/index");
            } catch (PDOException $e) {
              echo "Het inserten van een record is niet gelukt.";
              header("Refresh:3; url=" . URLROOT . "/countries/index");
@@ -89,7 +88,7 @@ class Countries extends Controller
         $data = [
             'title' => 'Voeg een nieuw land toe'
         ];
-            $this->view('countries/create', $data);
+            $this->view('RichestPeopleModel/create', $data);
         }
     }
     
@@ -99,6 +98,6 @@ class Countries extends Controller
         $data = [
             'title' => 'Ik ben slimmer dan Euer',
         ];
-        $this->view('countries/test', $data);
+        $this->view('RichestPeopleModel/test', $data);
     }
 }
