@@ -4,9 +4,9 @@
     <thead>
         <th>Id</th>
         <th>Naam</th>
-        <th>Hoofdstad</th>
-        <th>Continent</th>
-        <th>Aantal inwoners</th>
+        <th>Vermogen</th>
+        <th>Leeftijd</th>
+        <th>Bedrijf</th>
         <th>Delete</th>
     </thead>
 

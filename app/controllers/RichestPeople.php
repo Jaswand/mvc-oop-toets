@@ -23,11 +23,11 @@ class RichestPeople extends Controller
         {
             $rows .= "<tr>
                         <td>$items->Id</td>
-                        <td>$items->Naam</td>
-                        <td>$items->Vermogen</td>
-                        <td>$items->Leeftijd</td>
-                        <td>$items->Bedrijf</td>
-                        <td><a href='" . URLROOT . "/richestpeople/delete/$items->id'>Delete</a></td>
+                        <td>$items->MyName</td>
+                        <td>$items->Networth</td>
+                        <td>$items->Age</td>
+                        <td>$items->Company</td>
+                        <td><a href='" . URLROOT . "/richestpeople/delete/$items->Id'>Delete</a></td>
                        </tr>"; 
         }
         
@@ -61,7 +61,7 @@ class RichestPeople extends Controller
 
     public function delete($id){
         //echo $id;exit();
-        $this->countryModel->deleteCountry($id);
+        $this->RichestPeople->deleteCountry($id);
         $data =[
             'deleteStatus' => "Record is met succesvol verwijderd"
 
